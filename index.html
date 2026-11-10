@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#081426">
+<meta name="theme-color" content="#100817">
 <title>Something Special</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -12,333 +12,324 @@
 
 <style>
 *{box-sizing:border-box}
-
 body{
-margin:0;
-min-height:100vh;
-display:flex;
-align-items:center;
-justify-content:center;
-padding:22px 16px;
-background:
-radial-gradient(ellipse at 50% 25%,#164879 0%,transparent 60%),
-linear-gradient(160deg,#060d19,#102440);
-color:white;
-font-family:Arial,"Cairo",sans-serif;
+  margin:0;
+  min-height:100vh;
+  font-family:'Cairo',sans-serif;
+  color:#fff;
+  background:
+    radial-gradient(ellipse at 50% 20%,#482044 0%,transparent 55%),
+    radial-gradient(ellipse at 50% 90%,#260e25 0%,transparent 55%),
+    #100817;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+  text-align:center;
 }
-
-.page{
-width:100%;
-max-width:430px;
-text-align:center;
+.container{
+  width:100%;
+  max-width:440px;
 }
-
-.logo{
-font-size:12px;
-letter-spacing:4px;
-font-weight:800;
-color:#75baff;
-margin-bottom:28px;
-}
-
 h1{
-font-size:27px;
-line-height:1.5;
-margin:0 0 9px;
-font-weight:800;
+  font-size:27px;
+  margin:0 0 12px;
+  font-weight:800;
 }
-
-.description{
-font-size:15px;
-color:#b6cbe3;
-margin:0 0 25px;
+.subtitle{
+  font-size:15px;
+  color:#d8c5d8;
+  margin-bottom:24px;
 }
-
 .preview{
-position:relative;
-width:100%;
-aspect-ratio:1;
-overflow:hidden;
-border-radius:25px;
-background:#132b49;
-border:1px solid rgba(113,177,255,.5);
-box-shadow:0 15px 55px rgba(0,0,0,.45);
+  position:relative;
+  width:100%;
+  aspect-ratio:1/1;
+  overflow:hidden;
+  border-radius:20px;
+  border:1px solid #75436e;
+  background:#1b1020;
+  box-shadow:0 0 35px #a42c7950;
 }
-
 .preview img{
-position:absolute;
-inset:-20px;
-width:calc(100% + 40px);
-height:calc(100% + 40px);
-object-fit:cover;
-filter:blur(19px) brightness(.43);
-transform:scale(1.04);
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  filter:blur(25px) brightness(.32);
+  transform:scale(1.12);
 }
-
 .overlay{
-position:absolute;
-inset:0;
-display:flex;
-align-items:center;
-justify-content:center;
-background:rgba(3,13,27,.17);
+  position:absolute;
+  inset:0;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:15px;
+  background:#160c1b35;
 }
-
 .play{
-width:100px;
-height:100px;
-border-radius:50%;
-display:flex;
-align-items:center;
-justify-content:center;
-background:rgba(14,79,145,.65);
-border:2px solid white;
-box-shadow:0 0 0 10px rgba(255,255,255,.09),
-0 0 35px rgba(40,145,255,.45);
+  width:76px;
+  height:76px;
+  border-radius:50%;
+  background:#c52b85;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  box-shadow:0 0 28px #d42c9a80;
 }
-
-.triangle{
-width:0;
-height:0;
-border-top:16px solid transparent;
-border-bottom:16px solid transparent;
-border-left:25px solid white;
-margin-left:7px;
+.play:after{
+  content:"";
+  width:0;height:0;
+  border-top:14px solid transparent;
+  border-bottom:14px solid transparent;
+  border-left:21px solid white;
+  margin-left:6px;
 }
-
 .caption{
-position:absolute;
-bottom:20px;
-left:10px;
-right:10px;
-font-size:14px;
-font-weight:700;
-text-shadow:0 2px 8px black;
+  font-size:19px;
+  font-weight:800;
+  text-shadow:0 2px 8px #000;
 }
-
 .status{
-margin:23px 0 15px;
-color:#a9c8ec;
-font-size:14px;
+  margin:20px 0;
+  color:#e3c8df;
+  font-size:14px;
 }
-
-.button{
-width:100%;
-min-height:59px;
-display:flex;
-align-items:center;
-justify-content:center;
-border-radius:15px;
-background:linear-gradient(120deg,#2695ff,#0755d5);
-color:white;
-font-size:17px;
-font-weight:800;
-text-decoration:none;
-box-shadow:0 8px 25px rgba(0,100,255,.3);
+.progress{
+  height:6px;
+  background:#38243a;
+  border-radius:20px;
+  overflow:hidden;
+  margin-top:12px;
 }
-
-.button.disabled{
-opacity:.45;
+.bar{
+  width:0%;
+  height:100%;
+  background:linear-gradient(90deg,#9b2caa,#f04d9c);
+  transition:width 1s linear;
 }
-
-.footer{
-font-size:11px;
-line-height:1.8;
-color:#8298b4;
-margin-top:19px;
+button{
+  width:100%;
+  border:0;
+  border-radius:14px;
+  padding:16px;
+  font-family:inherit;
+  font-size:18px;
+  font-weight:800;
+  color:white;
+  background:linear-gradient(135deg,#a52a91,#e23b87);
+  cursor:pointer;
+  box-shadow:0 8px 25px #b62c8650;
 }
-
-[dir="rtl"]{
-font-family:"Cairo",Arial,sans-serif;
+button:disabled{
+  opacity:.45;
+  cursor:not-allowed;
 }
-
-@media(max-width:360px){
-h1{font-size:23px}
-.play{width:85px;height:85px}
+a{
+  text-decoration:none;
+  color:inherit;
 }
+.note{
+  margin-top:16px;
+  color:#a995aa;
+  font-size:12px;
+}
+[dir="rtl"]{direction:rtl}
 </style>
 </head>
 
 <body>
-<main class="page">
+<div class="container">
 
-<div class="logo">DISCOVER</div>
+  <h1 id="title">Something Special</h1>
+  <div class="subtitle" id="subtitle">Your content is almost ready</div>
 
-<h1 id="title">There's Something Special Waiting for You 🫦</h1>
+  <a id="playLink" href="#" target="_blank" rel="noopener">
+    <div class="preview">
+      <img id="previewImage" src="./IMG_6092.gif" alt="Preview">
+      <div class="overlay">
+        <div class="play"></div>
+        <div class="caption" id="caption">Watch Now</div>
+      </div>
+    </div>
+  </a>
 
-<p class="description" id="description">
-Enjoy every moment.
-</p>
+  <div class="status" id="status">Preparing your content...</div>
 
-<section class="preview">
-<img src="./IMG_6092.gif" alt="Preview">
+  <div class="progress">
+    <div class="bar" id="bar"></div>
+  </div>
 
-<div class="overlay">
-<a class="play" id="playLink" href="#" aria-label="Continue">
-<span class="triangle"></span>
-</a>
+  <div style="margin-top:22px">
+    <a id="continueLink" href="#" target="_blank" rel="noopener">
+      <button id="continueBtn" disabled>Continue</button>
+    </a>
+  </div>
+
+  <div class="note" id="note">Please wait a moment</div>
 </div>
-
-<div class="caption" id="caption">Something special is waiting</div>
-</section>
-
-<div class="status" id="status">Please wait 3 seconds...</div>
-
-<a class="button disabled" id="continue" href="#" aria-disabled="true">
-<span id="buttonText">Continue (3)</span>
-</a>
-
-<p class="footer" id="footer">
-Continue to view available offers.
-</p>
-
-</main>
 
 <script>
 const smartLink =
 "https://onelead.odinllm.com/?utm_medium=f4971a16d63e6b3940dce3348a955147548b040f&utm_campaign=cr7";
 
-const translations={
-en:{
-title:"There's Something Special Waiting for You 🫦",
-description:"Enjoy every moment.",
-caption:"Something special is waiting",
-status:"Please wait",
-button:"Continue",
-footer:"Continue to view available offers."
-},
-sw:{
-title:"Kuna Kitu Maalum Kinachokungoja 🫦",
-description:"Furahia kila wakati.",
-caption:"Kitu maalum kinakungoja",
-status:"Tafadhali subiri",
-button:"Endelea",
-footer:"Endelea kuona ofa zinazopatikana."
-},
-pt:{
-title:"Há Algo Especial Esperando por Você 🫦",
-description:"Aproveite cada momento.",
-caption:"Algo especial está esperando",
-status:"Por favor aguarde",
-button:"Continuar",
-footer:"Continue para ver as ofertas disponíveis."
-},
-fil:{
-title:"May Espesyal na Naghihintay sa Iyo 🫦",
-description:"I-enjoy ang bawat sandali.",
-caption:"May espesyal na naghihintay",
-status:"Mangyaring maghintay",
-button:"Magpatuloy",
-footer:"Magpatuloy upang makita ang mga available na alok."
-},
-bn:{
-title:"আপনার জন্য বিশেষ কিছু অপেক্ষা করছে 🫦",
-description:"প্রতিটি মুহূর্ত উপভোগ করুন।",
-caption:"বিশেষ কিছু অপেক্ষা করছে",
-status:"অনুগ্রহ করে অপেক্ষা করুন",
-button:"চালিয়ে যান",
-footer:"উপলব্ধ অফার দেখতে চালিয়ে যান।"
-},
-id:{
-title:"Ada Sesuatu yang Istimewa Menantimu 🫦",
-description:"Nikmati setiap momen.",
-caption:"Sesuatu yang istimewa menanti",
-status:"Silakan tunggu",
-button:"Lanjutkan",
-footer:"Lanjutkan untuk melihat penawaran yang tersedia."
-},
-ur:{
-title:"آپ کے لیے کچھ خاص منتظر ہے 🫦",
-description:"ہر لمحے سے لطف اٹھائیں۔",
-caption:"کچھ خاص آپ کا منتظر ہے",
-status:"براہ کرم انتظار کریں",
-button:"جاری رکھیں",
-footer:"دستیاب آفرز دیکھنے کے لیے جاری رکھیں۔"
-},
-ar:{
-title:"هناك شيء مميز بانتظارك 🫦",
-description:"استمتع بكل لحظة.",
-caption:"شيء مميز بانتظارك",
-status:"يرجى الانتظار",
-button:"متابعة",
-footer:"تابع للاطلاع على العروض المتاحة."
-}
+const translations = {
+  en:{
+    title:"Something Special",
+    subtitle:"Your content is almost ready",
+    caption:"Watch Now",
+    status:"Preparing your content...",
+    ready:"Your content is ready!",
+    button:"Continue",
+    note:"Please wait a moment"
+  },
+  sw:{
+    title:"Kitu Maalum",
+    subtitle:"Maudhui yako yanakaribia kuwa tayari",
+    caption:"Tazama Sasa",
+    status:"Tunatayarisha maudhui yako...",
+    ready:"Maudhui yako yako tayari!",
+    button:"Endelea",
+    note:"Tafadhali subiri kidogo"
+  },
+  pt:{
+    title:"Algo Especial",
+    subtitle:"O seu conteúdo está quase pronto",
+    caption:"Assistir Agora",
+    status:"A preparar o seu conteúdo...",
+    ready:"O seu conteúdo está pronto!",
+    button:"Continuar",
+    note:"Por favor, aguarde um momento"
+  },
+  fil:{
+    title:"May Espesyal Para Sa Iyo",
+    subtitle:"Halos handa na ang iyong content",
+    caption:"Panoorin Ngayon",
+    status:"Inihahanda ang iyong content...",
+    ready:"Handa na ang iyong content!",
+    button:"Magpatuloy",
+    note:"Sandali lang po"
+  },
+  bn:{
+    title:"আপনার জন্য বিশেষ কিছু",
+    subtitle:"আপনার কনটেন্ট প্রায় প্রস্তুত",
+    caption:"এখনই দেখুন",
+    status:"আপনার কনটেন্ট প্রস্তুত করা হচ্ছে...",
+    ready:"আপনার কনটেন্ট প্রস্তুত!",
+    button:"চালিয়ে যান",
+    note:"অনুগ্রহ করে একটু অপেক্ষা করুন"
+  },
+  id:{
+    title:"Sesuatu yang Spesial",
+    subtitle:"Konten Anda hampir siap",
+    caption:"Tonton Sekarang",
+    status:"Menyiapkan konten Anda...",
+    ready:"Konten Anda sudah siap!",
+    button:"Lanjutkan",
+    note:"Mohon tunggu sebentar"
+  },
+  ur:{
+    title:"آپ کے لیے کچھ خاص",
+    subtitle:"آپ کا مواد تقریباً تیار ہے",
+    caption:"ابھی دیکھیں",
+    status:"آپ کا مواد تیار کیا جا رہا ہے...",
+    ready:"آپ کا مواد تیار ہے!",
+    button:"جاری رکھیں",
+    note:"براہ کرم تھوڑا انتظار کریں"
+  },
+  ar:{
+    title:"شيء مميز لك",
+    subtitle:"المحتوى الخاص بك جاهز تقريباً",
+    caption:"شاهد الآن",
+    status:"جارٍ تجهيز المحتوى...",
+    ready:"المحتوى جاهز الآن!",
+    button:"متابعة",
+    note:"يرجى الانتظار قليلاً"
+  }
 };
 
-const arabicCountries=[
-"EG","SA","AE","KW","QA","BH","OM",
-"JO","IQ","LB","SY","YE","PS","DZ",
-"MA","TN","LY","SD","MR","SO","DJ","KM"
+const arabicCountries = [
+"EG","SA","AE","KW","QA","BH","OM","JO","IQ",
+"LB","SY","YE","PS","DZ","MA","TN","LY","SD",
+"MR","SO","DJ","KM"
 ];
 
 function languageFor(country){
-if(arabicCountries.includes(country))return "ar";
-if(country==="KE")return "sw";
-if(country==="MZ")return "pt";
-if(country==="PH")return "fil";
-if(country==="BD")return "bn";
-if(country==="ID")return "id";
-if(country==="PK")return "ur";
-return "en";
+  if(arabicCountries.includes(country)) return "ar";
+  if(country==="KE") return "sw";
+  if(country==="MZ") return "pt";
+  if(country==="PH") return "fil";
+  if(country==="BD") return "bn";
+  if(country==="ID") return "id";
+  if(country==="PK") return "ur";
+  return "en";
 }
 
 function applyLanguage(lang){
-const c=translations[lang]||translations.en;
+  const t=translations[lang] || translations.en;
+  document.documentElement.lang=lang;
+  document.documentElement.dir=
+    (lang==="ar" || lang==="ur") ? "rtl" : "ltr";
 
-document.documentElement.lang=lang;
-document.documentElement.dir=
-(lang==="ar"||lang==="ur")?"rtl":"ltr";
-
-document.getElementById("title").textContent=c.title;
-document.getElementById("description").textContent=c.description;
-document.getElementById("caption").textContent=c.caption;
-document.getElementById("status").textContent=c.status;
-document.getElementById("footer").textContent=c.footer;
-
-return c;
+  document.getElementById("title").textContent=t.title;
+  document.getElementById("subtitle").textContent=t.subtitle;
+  document.getElementById("caption").textContent=t.caption;
+  document.getElementById("status").textContent=t.status;
+  document.getElementById("continueBtn").textContent=t.button;
+  document.getElementById("note").textContent=t.note;
+  return t;
 }
 
 async function start(){
+  let lang="en";
 
-let country="";
+  try{
+    const response=await fetch("https://ipapi.co/json/");
+    const data=await response.json();
+    lang=languageFor(data.country_code || "");
+  }catch(error){
+    lang="en";
+  }
 
-try{
-const response=await fetch("https://ipapi.co/json/",{
-cache:"no-store"
-});
-if(!response.ok)throw new Error("IP lookup failed");
-const data=await response.json();
-country=(data.country_code||"").toUpperCase();
-}catch(e){}
+  const t=applyLanguage(lang);
 
-const c=applyLanguage(languageFor(country));
+  document.getElementById("playLink").href=smartLink;
+  document.getElementById("continueLink").href=smartLink;
 
-const button=document.getElementById("continue");
-const play=document.getElementById("playLink");
-const buttonText=document.getElementById("buttonText");
-const status=document.getElementById("status");
+  let seconds=3;
+  const status=document.getElementById("status");
+  const bar=document.getElementById("bar");
+  const button=document.getElementById("continueBtn");
 
-button.href=smartLink;
-play.href=smartLink;
+  const timer=setInterval(()=>{
+    seconds--;
+    bar.style.width=((3-seconds)/3*100)+"%";
 
-let seconds=3;
-
-const timer=setInterval(()=>{
-seconds--;
-
-if(seconds>0){
-buttonText.textContent=c.button+" ("+seconds+")";
-}else{
-clearInterval(timer);
-status.textContent=c.button;
-buttonText.textContent=c.button;
-button.classList.remove("disabled");
-button.removeAttribute("aria-disabled");
-}
-},1000);
+    if(seconds<=0){
+      clearInterval(timer);
+      status.textContent=t.ready;
+      button.disabled=false;
+      bar.style.width="100%";
+    }
+  },1000);
 }
 
 start();
+
+/* Freeze the GIF on its first decoded frame */
+const previewImage=document.getElementById("previewImage");
+previewImage.addEventListener("load",()=>{
+  try{
+    const canvas=document.createElement("canvas");
+    canvas.width=previewImage.naturalWidth;
+    canvas.height=previewImage.naturalHeight;
+    const context=canvas.getContext("2d");
+    context.drawImage(previewImage,0,0);
+    previewImage.src=canvas.toDataURL("image/png");
+  }catch(e){}
+},{once:true});
 </script>
 </body>
 </html>
+
